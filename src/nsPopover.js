@@ -23,7 +23,8 @@
           timeout: attrs.nsPopoverTimeout || 1.5,
           hideOnClick: attrs.nsPopoverHideOnClick === 'true' || attrs.nsPopoverHideOnClick === undefined,
 		  mouserelative_x: attrs.nsPopoverMouseRelative === 'x' || attrs.nsPopoverMouseRelative === 'xy',
-		  mouserelative_y: attrs.nsPopoverMouseRelative === 'y' || attrs.nsPopoverMouseRelative === 'xy'
+		  mouserelative_y: attrs.nsPopoverMouseRelative === 'y' || attrs.nsPopoverMouseRelative === 'xy',
+		  ignorehover: attrs.nsPopoverIgnoreHover || false
         };
 
         var hider_ = {
@@ -169,7 +170,7 @@
             hider_.hide($popover, options.timeout);
           })
           .on('mouseover', function() {
-            hider_.cancel();
+            if(!options.ignorehover) hider_.cancel();
           });
 
         /**
